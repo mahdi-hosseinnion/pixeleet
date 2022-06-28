@@ -3,6 +3,9 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
+    //KSP plugin for compose Nav destinations (Tip: should match kotlin version)
+    //More info: https://github.com/raamcosta/compose-destinations#1-add-the-ksp-plugin
+    id 'com.google.devtools.ksp' version '1.6.10-1.0.4'
 }
 
 android {
@@ -45,6 +48,14 @@ android {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
         }
     }
+    //For Compose Nav destination
+    applicationVariants.all { variant ->
+        kotlin.sourceSets {
+            getByName(variant.name) {
+                kotlin.srcDir("build/generated/ksp/${variant.name}/kotlin")
+            }
+        }
+    }
 }
 
 dependencies {
@@ -61,6 +72,10 @@ dependencies {
     //Hilt
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-compiler:$hilt_version"
+    //Compose Nav destination
+    implementation "io.github.raamcosta.compose-destinations:core:$compose_destination_version"
+    ksp "io.github.raamcosta.compose-destinations:ksp:$compose_destination_version"
+    implementation 'androidx.hilt:hilt-navigation-compose:1.0.0'
 
     //*** Test dependencies
     testImplementation "junit:junit:$junit_version"
