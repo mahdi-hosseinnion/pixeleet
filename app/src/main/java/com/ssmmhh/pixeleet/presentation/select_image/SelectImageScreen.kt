@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import com.ssmmhh.pixeleet.presentation.destinations.ShowImageScreenDestination
 
 private const val TAG = "SelectImageScreen"
 
@@ -33,9 +34,12 @@ fun SelectImageScreen(
             Text(text = "Pick image")
         }
 
-        viewModel.imageUri.let {
-            //TODO("Navigate to next screen")
-            Log.d(TAG, "SelectImageScreen: called with $it")
+        viewModel.imageUri?.let { uri ->
+            navigator.navigate(
+                ShowImageScreenDestination(imageUri = uri)
+            )
+            //Reset image uri
+            viewModel.setImageUriTo(null)
         }
 
     }

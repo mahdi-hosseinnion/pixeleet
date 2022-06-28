@@ -11,10 +11,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.ramcosta.composedestinations.DestinationsNavHost
-import com.ssmmhh.pixeleet.presentation.select_image.NavGraphs
+import com.ssmmhh.pixeleet.presentation.NavGraphs
 import com.ssmmhh.pixeleet.ui.theme.PixeleetTheme
 import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.android.HiltAndroidApp
 import javax.inject.Inject
 
 @AndroidEntryPoint
